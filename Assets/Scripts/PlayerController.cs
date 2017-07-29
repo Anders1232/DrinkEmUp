@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
-
 public class PlayerController : MonoBehaviour {
     public const float MOVEMENT_MAX_X = 6f;
     public const float MOVEMENT_MIN_X = -7.5f;
