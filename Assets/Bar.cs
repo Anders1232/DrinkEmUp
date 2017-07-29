@@ -38,7 +38,7 @@ public class Bar : MonoBehaviour
         transform.localScale = new Vector3((CurrentValue / TotalValue), 1, 1);
     }
 
-    void ChangeValue(float DeltaValue)
+    public void ChangeValue(float DeltaValue)
     {
         float NewValue = CurrentValue + DeltaValue;
 
