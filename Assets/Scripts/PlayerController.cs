@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour {
     public const float MOVEMENT_MIN_X = -7.5f;
     public const float MOVEMENT_MAX_Y = -1.0f;
     public const float MOVEMENT_MIN_Y = -3.5f;
-
+    public GameObject drunkIdle;
+    public GameObject drunkMoving;
+    private bool moving = false;
 
     public float speed;
     public CircleCollider2D circleCollider;
@@ -24,6 +26,29 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
         float horizontalMove = Input.GetAxis("Horizontal");
         float verticalMove = Input.GetAxis("Vertical");
+        bool newStatusAboutMoving;
+        if (horizontalMove == 0 && verticalMove == 0)
+        {
+            newStatusAboutMoving = false;
+        }
+        else {
+            newStatusAboutMoving = true;
+        }
+
+        if (newStatusAboutMoving != moving) {
+            if (newStatusAboutMoving)
+            {
+                drunkIdle.SetActive(false);
+                drunkMoving.SetActive(true);
+            }
+            else {
+                drunkIdle.SetActive(true);
+                drunkMoving.SetActive(false);
+            }
+            moving = newStatusAboutMoving;
+        }
+
+
         person.transform.Translate(new Vector2(horizontalMove, verticalMove/2)*speed);
         if (person.transform.position.x > MOVEMENT_MAX_X) {
             person.transform.Translate(new Vector2(MOVEMENT_MAX_X - person.transform.position.x, 0f));
