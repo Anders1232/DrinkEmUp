@@ -6,8 +6,8 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
     public const float MOVEMENT_MAX_X = 6f;
     public const float MOVEMENT_MIN_X = -7.5f;
-    public const float MOVEMENT_MAX_Y = 1.7f;
-    public const float MOVEMENT_MIN_Y = -2.7f;
+    public const float MOVEMENT_MAX_Y = -1.0f;
+    public const float MOVEMENT_MIN_Y = -3.5f;
 
 
     public float speed;
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
         float horizontalMove = Input.GetAxis("Horizontal");
         float verticalMove = Input.GetAxis("Vertical");
-        person.transform.Translate(new Vector2(horizontalMove, verticalMove)*speed);
+        person.transform.Translate(new Vector2(horizontalMove, verticalMove/2)*speed);
         if (person.transform.position.x > MOVEMENT_MAX_X) {
             person.transform.Translate(new Vector2(MOVEMENT_MAX_X - person.transform.position.x, 0f));
         }
