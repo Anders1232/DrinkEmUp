@@ -1107,6 +1107,11 @@ Prefab:
       propertyPath: m_Radius
       value: 0.52
       objectReference: {fileID: 0}
+    - target: {fileID: 114175758265930440, guid: 820c4100c7b20af46878c080a699290c,
+        type: 2}
+      propertyPath: alchoolInBeer
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 820c4100c7b20af46878c080a699290c, type: 2}
   m_IsPrefabParent: 0
