@@ -11,8 +11,16 @@ public class ScareCrow : MonoBehaviour {
     public float minSpeed;
     public float maxSpeed;
 
+    public float life;
+
+    public float attackAnimationTime;
+    public float attackAnimationTimeCounter;
+
+    public float damagePerHit;
+
     public SpriteRenderer stillSpriteRenderer;
     public SpriteRenderer walkingSpriteRenderer;
+    public SpriteRenderer punchingSpriteRenderer;
 
     public enum ScareCrowState {
         PASSIVE,
@@ -25,6 +33,8 @@ public class ScareCrow : MonoBehaviour {
 
     private GameObject player;
     private Bar playerBeerBar;
+    private bool damageAlreadyDone;
+    public Bar playerLifeBar;
 	// Use this for initialization
 	void Start () {
         scareCrowState = ScareCrowState.PASSIVE;
@@ -34,13 +44,15 @@ public class ScareCrow : MonoBehaviour {
             print("Ue");
         }
         playerBeerBar = GameObject.Find("BeerBar").GetComponent<Bar>();
+        playerLifeBar = GameObject.Find("LifeBar").GetComponent<Bar>();
         walkingSpriteRenderer.gameObject.SetActive(false);
-
-
     }
 
     // Update is called once per frame
     void Update () {
+        if (life == 0) {
+            Destroy(gameObject);
+        }
         speed = (maxSpeed - minSpeed) * playerBeerBar.CurrentValue / playerBeerBar.TotalValue + minSpeed;
         timeForTheNextMove -= Time.deltaTime;
         if (timeForTheNextMove <= 0) {
@@ -53,7 +65,13 @@ public class ScareCrow : MonoBehaviour {
                     scareCrowState = ScareCrowState.ATTACKING;
                     timeForTheNextMove = 2 * timeBetweenActions;
                     walkingSpriteRenderer.gameObject.SetActive(false);
-                    stillSpriteRenderer.gameObject.SetActive(true);
+                    stillSpriteRenderer.gameObject.SetActive(false);
+                    punchingSpriteRenderer.gameObject.SetActive(true);
+                    damageAlreadyDone = false;
+
+                    attackAnimationTimeCounter = attackAnimationTime;
+
+
                     //colocar aqui código para atacar, esse ataque deve durar timeBetweenActions para acontecer para que depois o espantalho fique parado por um tempo
                 }
                 else
@@ -64,6 +82,7 @@ public class ScareCrow : MonoBehaviour {
                     {
                         stillSpriteRenderer.gameObject.SetActive(false);
                         walkingSpriteRenderer.gameObject.SetActive(true);
+                        punchingSpriteRenderer.gameObject.SetActive(false);
                     }
                     //colocar aqui
                 }
@@ -74,17 +93,31 @@ public class ScareCrow : MonoBehaviour {
                 timeForTheNextMove = timeBetweenActions;
                 walkingSpriteRenderer.gameObject.SetActive(false);
                 stillSpriteRenderer.gameObject.SetActive(true);
+                punchingSpriteRenderer.gameObject.SetActive(false);
             }
         }
         if (scareCrowState == ScareCrowState.ATTACKING || scareCrowState == ScareCrowState.REACTING) {
             if (timeForTheNextMove > timeBetweenActions)
+            {
+                attackAnimationTimeCounter -= Time.deltaTime;
+                if(attackAnimationTimeCounter < attackAnimationTime/2)
                 {
-                    //colocar aqui código para atacar, esse ataque deve durar timeBetweenActions para acontecer para que depois o espantalho fique parado por um tempo
+                    if(!damageAlreadyDone)
+                    {
+                        playerLifeBar.ChangeValue(-damagePerHit);
+                        damageAlreadyDone = true;
+                    }
                 }
-                else
+                if(attackAnimationTimeCounter < 0)
                 {
                     scareCrowState = ScareCrowState.PASSIVE;
                 }
+                    //colocar aqui código para atacar, esse ataque deve durar timeBetweenActions para acontecer para que depois o espantalho fique parado por um tempo
+            }
+            else
+            {
+               scareCrowState = ScareCrowState.PASSIVE;
+            }
         }
         else if (scareCrowState == ScareCrowState.MOVING) {
             if (timeForTheNextMove > timeBetweenActions)

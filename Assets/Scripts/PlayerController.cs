@@ -38,6 +38,11 @@ public class PlayerController : MonoBehaviour {
 
     public Vector2 forcedMoveDirection;
 
+    private bool damageAlreadyDone;
+    public float damagePerHit;
+
+    public float rangeToAttack;
+
 
     public enum PlayerState
     {
@@ -116,6 +121,7 @@ public class PlayerController : MonoBehaviour {
             else if (Input.GetKeyDown("e"))
             {
                 newStatus = PlayerState.ATTACKING;
+                damageAlreadyDone = false;
             }
             else if (horizontalMove != 0 || verticalMove != 0)
             {
@@ -173,6 +179,20 @@ public class PlayerController : MonoBehaviour {
                 if (timeRemainingInTheAttack < timeWindowOfStartOfTheDamage && timeRemainingInTheAttack > timeWindowOfEndOfTheDamage)
                 {
                     print("Causar dano");
+                    if (!damageAlreadyDone)
+                    {
+                        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                        foreach (GameObject obj in enemies)
+                        {
+                            Vector3 movementDirection3D = (transform.position - obj.transform.position);
+                            Vector2 movementDirection = new Vector2(movementDirection3D.x, movementDirection3D.y);
+                            if (movementDirection.magnitude < rangeToAttack)
+                            {
+                                obj.GetComponent<ScareCrow>().life -= damagePerHit;
+                            }
+                        }
+                        damageAlreadyDone = true;
+                    }
                 }
                 if (timeRemainingInTheAttack <= 0)
                 {

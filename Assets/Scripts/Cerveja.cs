@@ -39,6 +39,7 @@ public class Cerveja : MonoBehaviour
         if (distanceBetweenMeAndThePlayer2D.magnitude < (playerCollider.radius + myCollider.radius))
         {
             GameObject.Find("BeerBar").GetComponent<Bar>().ChangeValue(alchoolInBeer);
+            GameObject.Find("LifeBar").GetComponent<Bar>().ChangeValue(5);
             Destroy(gameObject);
         }
     }

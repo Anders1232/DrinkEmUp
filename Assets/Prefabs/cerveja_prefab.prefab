@@ -35,8 +35,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1441892140429438}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.33, y: -2.55, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,9 +54,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.19, y: -0.44}
   serializedVersion: 2
-  m_Radius: 0.55
+  m_Radius: 0.52
 --- !u!114 &114175758265930440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -65,12 +65,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1441892140429438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2e9cc259446dba43b82c02d8daa0f86, type: 3}
+  m_Script: {fileID: 11500000, guid: 610aff6e1c505ba4fa25ca24cb8b31a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sinCounter: 0
   sinCounterStep: 0.1
   shakeAmplitude: 0.01
+  alchoolInBeer: 20
+  playerCollider: {fileID: 0}
 --- !u!212 &212596234784886708
 SpriteRenderer:
   m_ObjectHideFlags: 1
