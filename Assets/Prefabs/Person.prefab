@@ -303,6 +303,8 @@ MonoBehaviour:
   numberOfSubSpritesInAttacking: 9
   spriteWhichTheAttackHappens: 6
   timeRemainingInTheAttack: 0
+  dyingAnimationTime: 0.9
+  dyingAnimationTimeCounter: 0
   playerState: 0
 --- !u!114 &114685011286981538
 MonoBehaviour:
