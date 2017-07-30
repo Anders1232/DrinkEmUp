@@ -132,8 +132,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenActions: 0.5
   timeForTheNextMove: 2
-  rangeToAttack: 0.1
-  speed: 0.003
+  rangeToAttack: 1.9
+  minSpeed: 0.1
+  maxSpeed: 0.3
   stillSpriteRenderer: {fileID: 212749177290440610}
   walkingSpriteRenderer: {fileID: 212175487221199866}
   scareCrowState: 0
