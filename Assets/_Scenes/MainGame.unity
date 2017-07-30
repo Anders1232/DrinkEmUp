@@ -1449,7 +1449,7 @@ Prefab:
     - target: {fileID: 114238257921075590, guid: 85e978cf703ed8b41ad1215f031d4ca0,
         type: 2}
       propertyPath: cameraSlideSlow
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 85e978cf703ed8b41ad1215f031d4ca0, type: 2}
