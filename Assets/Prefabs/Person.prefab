@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 114238257921075590}
   m_Layer: 0
   m_Name: Person
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,6 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4331a593bf6bbca40a9394cc66779d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 0}
+  cameraExtraSlide: 0.015
+  cameraSlideSlow: 0.015
   drunkIdle: {fileID: 1554656727300868}
   drunkMoving: {fileID: 143348}
   speed: 0.05

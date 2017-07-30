@@ -1097,7 +1097,7 @@ MonoBehaviour:
   backgroundSize: 21.08
   paralaxSpeed: 2.45
   paralax: 0
-  scrolling: 0
+  scrolling: 1
 --- !u!4 &1137212279
 Transform:
   m_ObjectHideFlags: 0
@@ -1374,9 +1374,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundSize: 20.68
-  paralaxSpeed: 3.46
-  paralax: 0
-  scrolling: 0
+  paralaxSpeed: -3.46
+  paralax: 1
+  scrolling: 1
 --- !u!4 &1424704635
 Transform:
   m_ObjectHideFlags: 0
@@ -1434,6 +1434,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114238257921075590, guid: 85e978cf703ed8b41ad1215f031d4ca0,
         type: 2}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 2064415327}
+    - target: {fileID: 114238257921075590, guid: 85e978cf703ed8b41ad1215f031d4ca0,
+        type: 2}
       propertyPath: moveLimits
       value: 
       objectReference: {fileID: 1754323135}
@@ -1441,9 +1446,10 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 199340, guid: 85e978cf703ed8b41ad1215f031d4ca0, type: 2}
-      propertyPath: m_TagString
-      value: Player
+    - target: {fileID: 114238257921075590, guid: 85e978cf703ed8b41ad1215f031d4ca0,
+        type: 2}
+      propertyPath: cameraSlideSlow
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 85e978cf703ed8b41ad1215f031d4ca0, type: 2}
@@ -1669,6 +1675,7 @@ GameObject:
   - component: {fileID: 2064415325}
   - component: {fileID: 2064415324}
   - component: {fileID: 2064415323}
+  - component: {fileID: 2064415328}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1746,6 +1753,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2064415328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2064415322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18dd196e9feff68408b373d405ae5f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slideSpeed: 0.02
 --- !u!1 &2064695398
 GameObject:
   m_ObjectHideFlags: 0
