@@ -8,6 +8,10 @@ public class ScareCrow : MonoBehaviour {
     public float rangeToAttack;
     public float speed;
     private Vector2 movementDirection;
+
+    public SpriteRenderer stillSpriteRenderer;
+    public SpriteRenderer walkingSpriteRenderer;
+
     public enum ScareCrowState {
         PASSIVE,
         MOVING,
@@ -28,7 +32,7 @@ public class ScareCrow : MonoBehaviour {
             print("Ue");
         }
         playerBeerBar = GameObject.Find("BeerBar").GetComponent<Bar>();
-
+        walkingSpriteRenderer.gameObject.SetActive(false);
 
 
     }
@@ -45,12 +49,16 @@ public class ScareCrow : MonoBehaviour {
                 {
                     scareCrowState = ScareCrowState.ATTACKING;
                     timeForTheNextMove = 2 * timeBetweenActions;
-    //colocar aqui código para atacar, esse ataque deve durar timeBetweenActions para acontecer para que depois o espantalho fique parado por um tempo
+                    walkingSpriteRenderer.gameObject.SetActive(false);
+                    stillSpriteRenderer.gameObject.SetActive(true);
+                    //colocar aqui código para atacar, esse ataque deve durar timeBetweenActions para acontecer para que depois o espantalho fique parado por um tempo
                 }
                 else
                 {
                     scareCrowState = ScareCrowState.MOVING;
                     timeForTheNextMove = 2 * timeBetweenActions;
+                    walkingSpriteRenderer.gameObject.SetActive(true);
+                    stillSpriteRenderer.gameObject.SetActive(false);
                     //colocar aqui
                 }
             }
@@ -58,6 +66,8 @@ public class ScareCrow : MonoBehaviour {
             {
                 scareCrowState = ScareCrowState.PASSIVE;
                 timeForTheNextMove = timeBetweenActions;
+                walkingSpriteRenderer.gameObject.SetActive(false);
+                stillSpriteRenderer.gameObject.SetActive(true);
             }
         }
         if (scareCrowState == ScareCrowState.ATTACKING || scareCrowState == ScareCrowState.REACTING) {
