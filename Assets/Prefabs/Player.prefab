@@ -41,10 +41,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 435020}
-  - component: {fileID: 114685011286981538}
   - component: {fileID: 114238257921075590}
   m_Layer: 0
-  m_Name: Person
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,26 +353,12 @@ MonoBehaviour:
   timeRemainingInTheAttack: 0
   dyingAnimationTime: 0.9
   dyingAnimationTimeCounter: 0
-<<<<<<< HEAD
-=======
   timeThinkingAboutWhatToDo: 1.5
   timeBetweenThinkies: 2
   timeBetweenThinkiesCounter: 0
   forcedMoveDirection: {x: 0, y: 0}
   beerBar: {fileID: 0}
->>>>>>> e05707af5cb180bfa67c322ea05b1f2a44a5d438
   playerState: 0
---- !u!114 &114685011286981538
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 828f3c3288bfb1949a50becbc48372cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212367255748916164
 SpriteRenderer:
   m_ObjectHideFlags: 1
