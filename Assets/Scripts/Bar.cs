@@ -18,14 +18,7 @@ public class Bar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            ChangeValue(-5);
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            ChangeValue(5);
-        }
+
     }
 
     void FixedUpdate()
