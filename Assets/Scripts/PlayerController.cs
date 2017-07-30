@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+    public Transform cameraTransform;
+    public float cameraExtraSlide;
+    public float cameraSlideSlow;
+
     public const float MOVEMENT_MAX_X = 6f;
     public const float MOVEMENT_MIN_X = -7.5f;
     public const float MOVEMENT_MAX_Y = -1.0f;
@@ -55,16 +59,17 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    void Translate(Vector2 vec2)
-    {
-        person.transform.Translate(vec2);
-        if (person.transform.position.x > MOVEMENT_MAX_X)
+
+        person.transform.Translate(new Vector2(horizontalMove, verticalMove/2)*speed);
+        if (person.transform.position.x > MOVEMENT_MAX_X + cameraTransform.position.x)
         {
-            person.transform.Translate(new Vector2(MOVEMENT_MAX_X - person.transform.position.x, 0f));
+            person.transform.Translate(new Vector2(MOVEMENT_MAX_X + cameraTransform.position.x - person.transform.position.x, 0f));
+            cameraTransform.Translate(new Vector2(cameraExtraSlide, 0f));
         }
-        else if (person.transform.position.x < MOVEMENT_MIN_X)
+        else if (person.transform.position.x < MOVEMENT_MIN_X + cameraTransform.position.x)
         {
-            person.transform.Translate(new Vector2(MOVEMENT_MIN_X - person.transform.position.x, 0f));
+            person.transform.Translate(new Vector2(MOVEMENT_MIN_X + cameraTransform.position.x - person.transform.position.x, 0f));
+            cameraTransform.transform.Translate(new Vector2(-cameraSlideSlow, 0f));
         }
 
         if (person.transform.position.y > MOVEMENT_MAX_Y)
