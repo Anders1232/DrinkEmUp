@@ -26,6 +26,12 @@ public class PlayerController : MonoBehaviour {
     public float dyingAnimationTime;
     public float dyingAnimationTimeCounter;
 
+    public float timeThinkingAboutWhatToDo;
+    public float timeBetweenThinkies;
+    public float timeBetweenThinkiesCounter;
+
+    public Bar beerBar;
+
     public enum PlayerState
     {
         MOVING,
@@ -40,7 +46,9 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         playerState = PlayerState.WAITING;
-	}
+        timeBetweenThinkiesCounter = timeBetweenThinkies;
+
+    }
 
     void Translate(Vector2 vec2)
     {
@@ -69,7 +77,7 @@ public class PlayerController : MonoBehaviour {
         float horizontalMove = Input.GetAxis("Horizontal");
         float verticalMove = Input.GetAxis("Vertical");
         PlayerState newStatus= PlayerState.WAITING;
-
+        timeBetweenThinkiesCounter -= Time.fixedDeltaTime;
 
 
         if (playerState == PlayerState.WAITING)
