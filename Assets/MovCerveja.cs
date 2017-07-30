@@ -26,6 +26,10 @@ public class MovCerveja : MonoBehaviour
         sinCounter += sinCounterStep;
         gameObject.transform.Translate(new Vector2(0, Mathf.Sin(sinCounter)* shakeAmplitude));
 
+        if (null == player) {
+            return;
+        }
+
         Vector3 distance3D = transform.TransformPoint(transform.position+ new Vector3(myCollider.offset.x, myCollider.offset.y) ) - (player.transform.position+ new Vector3(playerCollider.gameObject.transform.localPosition.x, playerCollider.gameObject.transform.localPosition.y) );
         Vector2 distance = new Vector2(distance3D.x, distance3D.y);
         //        print("BeerPos= (" + (transform.position + new Vector3(myCollider.offset.x, myCollider.offset.y)).x + ", " + (transform.position + new Vector3(myCollider.offset.x, myCollider.offset.y)).y + ")");

@@ -1012,7 +1012,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 820c4100c7b20af46878c080a699290c, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1646456329
+--- !u!1001 &1615567557
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1056,13 +1056,29 @@ Prefab:
       propertyPath: moveLimits
       value: 
       objectReference: {fileID: 1754323135}
+    - target: {fileID: 114238257921075590, guid: 85e978cf703ed8b41ad1215f031d4ca0,
+        type: 2}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 870025229}
+    - target: {fileID: 114238257921075590, guid: 85e978cf703ed8b41ad1215f031d4ca0,
+        type: 2}
+      propertyPath: BeerBar
+      value: 
+      objectReference: {fileID: 616259361}
     - target: {fileID: 199340, guid: 85e978cf703ed8b41ad1215f031d4ca0, type: 2}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 199340, guid: 85e978cf703ed8b41ad1215f031d4ca0, type: 2}
-      propertyPath: m_TagString
-      value: Player
+    - target: {fileID: 114238257921075590, guid: 85e978cf703ed8b41ad1215f031d4ca0,
+        type: 2}
+      propertyPath: dyingAnimationTime
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114238257921075590, guid: 85e978cf703ed8b41ad1215f031d4ca0,
+        type: 2}
+      propertyPath: dyingAnimationTimeCounter
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 85e978cf703ed8b41ad1215f031d4ca0, type: 2}
