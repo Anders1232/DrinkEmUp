@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BeerSpawnner : MonoBehaviour {
+
     public float timeBetweenSpawns;
     public float timeBetweenSpawnTimer;
     public float offsetX;
