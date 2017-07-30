@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
     public const float MOVEMENT_MAX_X = 6f;
@@ -181,7 +182,8 @@ public class PlayerController : MonoBehaviour {
             if (dyingAnimationTimeCounter >= dyingAnimationTime)
             {
                 print("VocE mOrrEU");
-                Destroy(gameObject);
+                GameOver();
+                //Destroy(gameObject);
             }
         }
         else if (playerState == PlayerState.CONFUSED)
@@ -292,5 +294,26 @@ public class PlayerController : MonoBehaviour {
 
 
         playerState = newStatus;
+    }
+
+    void GameOver()
+    {
+        //Time.timeScale = 0;
+
+        if (Input.GetKeyDown("r")) {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+        else if (Input.GetKeyDown("q"))
+            {
+                // save any game data here
+                #if UNITY_EDITOR
+                // Application.Quit() does not work in the editor so
+                // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+                    UnityEditor.EditorApplication.isPlaying = false;
+                #else
+                    Application.Quit();
+                #endif
+        }
+
     }
 }
