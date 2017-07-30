@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - GameOScreen
   layers:
   - Default
   - TransparentFX
@@ -44,4 +45,7 @@ TagManager:
     locked: 0
   - name: Pickup
     uniqueID: 614163789
+    locked: 0
+  - name: Foreground
+    uniqueID: 4109274737
     locked: 0

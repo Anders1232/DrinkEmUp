@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour {
     public float cameraExtraSlide;
     public float cameraSlideSlow;
 
+    public GameObject go;
+
     public const float MOVEMENT_MAX_X = 6f;
     public const float MOVEMENT_MIN_X = -7.5f;
     public const float MOVEMENT_MAX_Y = -1.0f;
@@ -207,9 +209,8 @@ public class PlayerController : MonoBehaviour {
             dyingAnimationTimeCounter += Time.fixedDeltaTime;
             if (dyingAnimationTimeCounter >= dyingAnimationTime)
             {
-                print("VocE mOrrEU");
+                //print("VocE mOrrEU");
                 GameOver();
-                //Destroy(gameObject);
             }
         }
         else if (playerState == PlayerState.CONFUSED)
@@ -325,10 +326,11 @@ public class PlayerController : MonoBehaviour {
 
     void GameOver()
     {
-        //Time.timeScale = 0;
+        go.SetActive(true);
 
         if (Input.GetKeyDown("r")) {
-            Application.LoadLevel(Application.loadedLevel);
+            //Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         else if (Input.GetKeyDown("q"))
             {
