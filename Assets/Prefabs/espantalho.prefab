@@ -186,7 +186,7 @@ MonoBehaviour:
   life: 20
   attackAnimationTime: 0.8
   attackAnimationTimeCounter: 0
-  damagePerHit: 10
+  damagePerHit: 5
   stillSpriteRenderer: {fileID: 212749177290440610}
   walkingSpriteRenderer: {fileID: 212175487221199866}
   punchingSpriteRenderer: {fileID: 212257502219091704}
