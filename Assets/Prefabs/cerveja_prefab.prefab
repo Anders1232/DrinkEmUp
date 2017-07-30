@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 58954566208496330}
   - component: {fileID: 114175758265930440}
   m_Layer: 0
-  m_Name: cerveja
+  m_Name: cerveja_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

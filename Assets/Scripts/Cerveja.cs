@@ -13,7 +13,7 @@ public class Cerveja : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("Person");
+        player = GameObject.FindGameObjectWithTag("Player");
         if (null == player) {
             print("Oops");
         }

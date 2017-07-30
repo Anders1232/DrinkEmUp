@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject drunkMoving;
     public GameObject Attacking;
     public GameObject dying;
+    public GameObject dizzy;
 
     public float speed;
     public CircleCollider2D circleCollider;
@@ -30,6 +31,8 @@ public class PlayerController : MonoBehaviour {
     public float timeBetweenThinkies;
     public float timeBetweenThinkiesCounter;
 
+    public Vector2 forcedMoveDirection;
+
     public Bar beerBar;
 
     public enum PlayerState
@@ -38,6 +41,8 @@ public class PlayerController : MonoBehaviour {
         WAITING,
         ATTACKING,
         DYING,
+        CONFUSED,
+        FORCE_MOVING,
         SIZE
     };
 
@@ -72,15 +77,32 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-	// Update is called once per frame
-	void FixedUpdate () {
+    // Update is called once per frame
+    void FixedUpdate () {
         float horizontalMove = Input.GetAxis("Horizontal");
         float verticalMove = Input.GetAxis("Vertical");
         PlayerState newStatus= PlayerState.WAITING;
         timeBetweenThinkiesCounter -= Time.fixedDeltaTime;
 
-
-        if (playerState == PlayerState.WAITING)
+        if (playerState == PlayerState.FORCE_MOVING)
+        {
+            if (healthBar.CurrentValue <= 0)
+            {
+                newStatus = PlayerState.DYING;
+            }
+            else
+            {
+                newStatus = PlayerState.FORCE_MOVING;
+                Translate(forcedMoveDirection * speed);
+//                timeBetweenThinkiesCounter -= timeBetweenThinkies;
+                if (0 >= timeBetweenThinkiesCounter) {
+                    timeBetweenThinkiesCounter = timeBetweenThinkies;
+                    newStatus = PlayerState.WAITING;
+                    print("Devo parar de andar");
+                }
+            }
+        }
+        else if (playerState == PlayerState.WAITING)
         {
             if (healthBar.CurrentValue <= 0)
             {
@@ -141,17 +163,19 @@ public class PlayerController : MonoBehaviour {
                 newStatus = PlayerState.ATTACKING;
                 timeRemainingInTheAttack -= Time.fixedDeltaTime;
                 float timeWindowOfStartOfTheDamage = attackAnimationTime - (float)spriteWhichTheAttackHappens / (float)numberOfSubSpritesInAttacking;
-                float timeWindowOfEndOfTheDamage = attackAnimationTime - (float)spriteWhichTheAttackHappens+1 / (float)numberOfSubSpritesInAttacking;
+                float timeWindowOfEndOfTheDamage = attackAnimationTime - (float)spriteWhichTheAttackHappens + 1 / (float)numberOfSubSpritesInAttacking;
                 if (timeRemainingInTheAttack < timeWindowOfStartOfTheDamage && timeRemainingInTheAttack > timeWindowOfEndOfTheDamage)
                 {
                     print("Causar dano");
                 }
-                if (timeRemainingInTheAttack <= 0) {
+                if (timeRemainingInTheAttack <= 0)
+                {
                     newStatus = PlayerState.WAITING;
                 }
             }
         }
-        else if (playerState == PlayerState.DYING) {
+        else if (playerState == PlayerState.DYING)
+        {
             newStatus = PlayerState.DYING;
             dyingAnimationTimeCounter += Time.fixedDeltaTime;
             if (dyingAnimationTimeCounter >= dyingAnimationTime)
@@ -160,10 +184,54 @@ public class PlayerController : MonoBehaviour {
                 Destroy(gameObject);
             }
         }
-//        else if (playerState == PlayerState.SIZE)
- //       {
-  //          newStatus = PlayerState.WAITING;
-   //     }
+        else if (playerState == PlayerState.CONFUSED)
+        {
+            //            timeBetweenThinkiesCounter -= Time.fixedDeltaTime;
+//            print("Estou parado pensando na vida");
+            if (timeBetweenThinkiesCounter <= 0)
+            {
+                print("Decidindo o q farei");
+                int randonNumber = (int)(Random.value * 100);
+                if (randonNumber < 50)
+                {
+                    //            MOVING,
+                    newStatus = PlayerState.FORCE_MOVING;
+                    float angle = Random.value * 360;
+                    forcedMoveDirection = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+                    Translate(forcedMoveDirection * speed);
+                    print("Vou me mover");
+                }
+                else if (randonNumber < 75)
+                {
+                    newStatus = PlayerState.ATTACKING;
+                    print("Vou atacar");
+                }
+                else
+                {
+                    newStatus = PlayerState.CONFUSED;
+                    timeBetweenThinkiesCounter = timeBetweenThinkies;
+                    print("Vou continuar confuso");
+                }
+                timeBetweenThinkiesCounter = timeBetweenThinkies;
+            }
+            if (newStatus == PlayerState.WAITING)
+            {
+                newStatus = PlayerState.CONFUSED;
+            }
+        }
+        if (timeBetweenThinkiesCounter <= 0f && (  playerState == PlayerState.WAITING || playerState == PlayerState.MOVING ) )
+        {
+            print("Chegou aqui");
+            bool ChangeAction = ( Random.Range(0f, beerBar.TotalValue) < (beerBar.CurrentValue / 3*2) );
+            timeBetweenThinkiesCounter = timeThinkingAboutWhatToDo;
+            if (ChangeAction)
+            {
+                print("Estás confuso!");
+                newStatus = PlayerState.CONFUSED;
+                timeBetweenThinkiesCounter = timeBetweenThinkies;
+
+            }
+        }
 
 
         if (newStatus != playerState)
@@ -174,6 +242,7 @@ public class PlayerController : MonoBehaviour {
                 drunkMoving.SetActive(false);
                 dying.SetActive(false);
                 Attacking.SetActive(true);
+                dizzy.SetActive(false);
                 timeRemainingInTheAttack = attackAnimationTime;
             }
             else if (newStatus == PlayerState.MOVING)
@@ -182,6 +251,16 @@ public class PlayerController : MonoBehaviour {
                 drunkMoving.SetActive(true);
                 dying.SetActive(false);
                 Attacking.SetActive(false);
+                dizzy.SetActive(false);
+            }
+            else if (newStatus == PlayerState.FORCE_MOVING)
+            {
+                print("newstatus = forcemoving");
+                drunkIdle.SetActive(false);
+                drunkMoving.SetActive(true);
+                dying.SetActive(false);
+                Attacking.SetActive(false);
+                dizzy.SetActive(true);
             }
             else if (newStatus == PlayerState.DYING)
             {
@@ -189,6 +268,7 @@ public class PlayerController : MonoBehaviour {
                 drunkMoving.SetActive(false);
                 dying.SetActive(true);
                 Attacking.SetActive(false);
+                dizzy.SetActive(false);
                 dyingAnimationTimeCounter = 0;
             }
             else if (newStatus == PlayerState.WAITING)
@@ -197,6 +277,16 @@ public class PlayerController : MonoBehaviour {
                 drunkMoving.SetActive(false);
                 dying.SetActive(false);
                 Attacking.SetActive(false);
+                dizzy.SetActive(false);
+            }
+            else if (newStatus == PlayerState.CONFUSED)
+            {
+                drunkIdle.SetActive(true);
+                drunkMoving.SetActive(false);
+                dying.SetActive(false);
+                Attacking.SetActive(false);
+                dizzy.SetActive(true);
+                timeBetweenThinkiesCounter = timeThinkingAboutWhatToDo;
             }
         }
 
