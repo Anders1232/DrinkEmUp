@@ -746,8 +746,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114079756084115688, guid: e2d4a19f2e1715649a124364909fda36,
         type: 2}
-      propertyPath: rangeToAttack
-      value: 1.9
+      propertyPath: minSpeed
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 114079756084115688, guid: e2d4a19f2e1715649a124364909fda36,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 0.007
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2d4a19f2e1715649a124364909fda36, type: 2}
@@ -1368,73 +1373,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1326923001}
---- !u!1001 &1351346950
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 947782334}
-    m_Modifications:
-    - target: {fileID: 4729786507750624, guid: 820c4100c7b20af46878c080a699290c, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729786507750624, guid: 820c4100c7b20af46878c080a699290c, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729786507750624, guid: 820c4100c7b20af46878c080a699290c, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729786507750624, guid: 820c4100c7b20af46878c080a699290c, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729786507750624, guid: 820c4100c7b20af46878c080a699290c, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729786507750624, guid: 820c4100c7b20af46878c080a699290c, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729786507750624, guid: 820c4100c7b20af46878c080a699290c, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729786507750624, guid: 820c4100c7b20af46878c080a699290c, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 58954566208496330, guid: 820c4100c7b20af46878c080a699290c,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 58954566208496330, guid: 820c4100c7b20af46878c080a699290c,
-        type: 2}
-      propertyPath: m_Offset.x
-      value: 0.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 58954566208496330, guid: 820c4100c7b20af46878c080a699290c,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: -0.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 58954566208496330, guid: 820c4100c7b20af46878c080a699290c,
-        type: 2}
-      propertyPath: m_Radius
-      value: 0.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 114175758265930440, guid: 820c4100c7b20af46878c080a699290c,
-        type: 2}
-      propertyPath: alchoolInBeer
-      value: 20
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 820c4100c7b20af46878c080a699290c, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1424704633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,22 +1476,12 @@ Prefab:
       objectReference: {fileID: 870025229}
     - target: {fileID: 114238257921075590, guid: 85e978cf703ed8b41ad1215f031d4ca0,
         type: 2}
-      propertyPath: BeerBar
-      value: 
-      objectReference: {fileID: 616259361}
-    - target: {fileID: 114238257921075590, guid: 85e978cf703ed8b41ad1215f031d4ca0,
-        type: 2}
       propertyPath: beerBar
       value: 
       objectReference: {fileID: 616259361}
     - target: {fileID: 199340, guid: 85e978cf703ed8b41ad1215f031d4ca0, type: 2}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 114238257921075590, guid: 85e978cf703ed8b41ad1215f031d4ca0,
-        type: 2}
-      propertyPath: cameraSlideSlow
-      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 85e978cf703ed8b41ad1215f031d4ca0, type: 2}
@@ -1868,7 +1796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18dd196e9feff68408b373d405ae5f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slideSpeed: 0.02
+  slideSpeed: 0.01
 --- !u!1 &2064695398
 GameObject:
   m_ObjectHideFlags: 0

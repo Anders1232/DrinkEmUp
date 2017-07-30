@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject person;
 
     public Bar healthBar;
-    public Bar BeerBar;
+    public Bar beerBar;
 
     public float attackAnimationTime;
     public int numberOfSubSpritesInAttacking;
@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour {
 
     public Vector2 forcedMoveDirection;
 
-    public Bar beerBar;
 
     public enum PlayerState
     {
@@ -59,8 +58,8 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-
-        person.transform.Translate(new Vector2(horizontalMove, verticalMove/2)*speed);
+    void Translate(Vector2 movement) { 
+        person.transform.Translate(movement);
         if (person.transform.position.x > MOVEMENT_MAX_X + cameraTransform.position.x)
         {
             person.transform.Translate(new Vector2(MOVEMENT_MAX_X + cameraTransform.position.x - person.transform.position.x, 0f));
@@ -171,6 +170,7 @@ public class PlayerController : MonoBehaviour {
             else
             {
                 newStatus = PlayerState.ATTACKING;
+                Translate(new Vector2(0f, 0f));
                 timeRemainingInTheAttack -= Time.fixedDeltaTime;
                 float timeWindowOfStartOfTheDamage = attackAnimationTime - (float)spriteWhichTheAttackHappens / (float)numberOfSubSpritesInAttacking;
                 float timeWindowOfEndOfTheDamage = attackAnimationTime - (float)spriteWhichTheAttackHappens + 1 / (float)numberOfSubSpritesInAttacking;
@@ -187,6 +187,7 @@ public class PlayerController : MonoBehaviour {
         else if (playerState == PlayerState.DYING)
         {
             newStatus = PlayerState.DYING;
+            Translate(new Vector2(0f, 0f));
             dyingAnimationTimeCounter += Time.fixedDeltaTime;
             if (dyingAnimationTimeCounter >= dyingAnimationTime)
             {
@@ -197,7 +198,8 @@ public class PlayerController : MonoBehaviour {
         else if (playerState == PlayerState.CONFUSED)
         {
             //            timeBetweenThinkiesCounter -= Time.fixedDeltaTime;
-//            print("Estou parado pensando na vida");
+            //            print("Estou parado pensando na vida");
+            Translate(new Vector2(0f, 0f));
             if (timeBetweenThinkiesCounter <= 0)
             {
                 print("Decidindo o q farei");
