@@ -2,6 +2,10 @@
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
+    public Transform cameraTransform;
+    public float cameraExtraSlide;
+    public float cameraSlideSlow;
+
     public const float MOVEMENT_MAX_X = 6f;
     public const float MOVEMENT_MIN_X = -7.5f;
     public const float MOVEMENT_MAX_Y = -1.0f;
@@ -18,7 +22,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject person;
 
     public Bar healthBar;
-    public Bar BeerBar;
+    public Bar beerBar;
 
     public float attackAnimationTime;
     public int numberOfSubSpritesInAttacking;
@@ -34,7 +38,6 @@ public class PlayerController : MonoBehaviour {
 
     public Vector2 forcedMoveDirection;
 
-    public Bar beerBar;
 
     public enum PlayerState
     {
@@ -56,16 +59,17 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    void Translate(Vector2 vec2)
-    {
-        person.transform.Translate(vec2);
-        if (person.transform.position.x > MOVEMENT_MAX_X)
+    void Translate(Vector2 movement) { 
+        person.transform.Translate(movement);
+        if (person.transform.position.x > MOVEMENT_MAX_X + cameraTransform.position.x)
         {
-            person.transform.Translate(new Vector2(MOVEMENT_MAX_X - person.transform.position.x, 0f));
+            person.transform.Translate(new Vector2(MOVEMENT_MAX_X + cameraTransform.position.x - person.transform.position.x, 0f));
+            cameraTransform.Translate(new Vector2(cameraExtraSlide, 0f));
         }
-        else if (person.transform.position.x < MOVEMENT_MIN_X)
+        else if (person.transform.position.x < MOVEMENT_MIN_X + cameraTransform.position.x)
         {
-            person.transform.Translate(new Vector2(MOVEMENT_MIN_X - person.transform.position.x, 0f));
+            person.transform.Translate(new Vector2(MOVEMENT_MIN_X + cameraTransform.position.x - person.transform.position.x, 0f));
+            cameraTransform.transform.Translate(new Vector2(-cameraSlideSlow, 0f));
         }
 
         if (person.transform.position.y > MOVEMENT_MAX_Y)
@@ -162,6 +166,7 @@ public class PlayerController : MonoBehaviour {
             else
             {
                 newStatus = PlayerState.ATTACKING;
+                Translate(new Vector2(0f, 0f));
                 timeRemainingInTheAttack -= Time.fixedDeltaTime;
                 float timeWindowOfStartOfTheDamage = attackAnimationTime - (float)spriteWhichTheAttackHappens / (float)numberOfSubSpritesInAttacking;
                 float timeWindowOfEndOfTheDamage = attackAnimationTime - (float)spriteWhichTheAttackHappens + 1 / (float)numberOfSubSpritesInAttacking;
@@ -178,6 +183,7 @@ public class PlayerController : MonoBehaviour {
         else if (playerState == PlayerState.DYING)
         {
             newStatus = PlayerState.DYING;
+            Translate(new Vector2(0f, 0f));
             dyingAnimationTimeCounter += Time.fixedDeltaTime;
             if (dyingAnimationTimeCounter >= dyingAnimationTime)
             {
@@ -189,7 +195,8 @@ public class PlayerController : MonoBehaviour {
         else if (playerState == PlayerState.CONFUSED)
         {
             //            timeBetweenThinkiesCounter -= Time.fixedDeltaTime;
-//            print("Estou parado pensando na vida");
+            //            print("Estou parado pensando na vida");
+            Translate(new Vector2(0f, 0f));
             if (timeBetweenThinkiesCounter <= 0)
             {
                 print("Decidindo o q farei");

@@ -6,8 +6,10 @@ public class ScareCrow : MonoBehaviour {
     public float timeBetweenActions;
     public float timeForTheNextMove;
     public float rangeToAttack;
-    public float speed;
+    private float speed;
     private Vector2 movementDirection;
+    public float minSpeed;
+    public float maxSpeed;
 
     public SpriteRenderer stillSpriteRenderer;
     public SpriteRenderer walkingSpriteRenderer;
@@ -39,6 +41,7 @@ public class ScareCrow : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        speed = (maxSpeed - minSpeed) * playerBeerBar.CurrentValue / playerBeerBar.TotalValue + minSpeed;
         timeForTheNextMove -= Time.deltaTime;
         if (timeForTheNextMove <= 0) {
             float contestResult = Random.Range(0f, 1f);
@@ -57,8 +60,11 @@ public class ScareCrow : MonoBehaviour {
                 {
                     scareCrowState = ScareCrowState.MOVING;
                     timeForTheNextMove = 2 * timeBetweenActions;
-                    walkingSpriteRenderer.gameObject.SetActive(true);
-                    stillSpriteRenderer.gameObject.SetActive(false);
+                    if (playerBeerBar.CurrentValue > playerBeerBar.TotalValue / 2)
+                    {
+                        stillSpriteRenderer.gameObject.SetActive(false);
+                        walkingSpriteRenderer.gameObject.SetActive(true);
+                    }
                     //colocar aqui
                 }
             }
