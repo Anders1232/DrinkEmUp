@@ -2496,9 +2496,9 @@ Prefab:
       objectReference: {fileID: 2064415327}
     - target: {fileID: 114238257921075590, guid: 5ced0f87513feaf418db5bc3a6261704,
         type: 2}
-      propertyPath: beerBar
+      propertyPath: moveLimits
       value: 
-      objectReference: {fileID: 616259361}
+      objectReference: {fileID: 1754323135}
     - target: {fileID: 114238257921075590, guid: 5ced0f87513feaf418db5bc3a6261704,
         type: 2}
       propertyPath: healthBar
@@ -2506,19 +2506,9 @@ Prefab:
       objectReference: {fileID: 870025229}
     - target: {fileID: 114238257921075590, guid: 5ced0f87513feaf418db5bc3a6261704,
         type: 2}
-      propertyPath: moveLimits
+      propertyPath: beerBar
       value: 
-      objectReference: {fileID: 1754323135}
-    - target: {fileID: 114238257921075590, guid: 5ced0f87513feaf418db5bc3a6261704,
-        type: 2}
-      propertyPath: damagePerHit
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114238257921075590, guid: 5ced0f87513feaf418db5bc3a6261704,
-        type: 2}
-      propertyPath: rangeToAttack
-      value: 2
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 616259361}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ced0f87513feaf418db5bc3a6261704, type: 2}
   m_IsPrefabParent: 0

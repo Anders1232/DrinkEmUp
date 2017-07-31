@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 435020}
   - component: {fileID: 114238257921075590}
+  - component: {fileID: 114215101624590300}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -55,7 +56,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199340}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5.58, y: -1.61, z: 0}
   m_LocalScale: {x: 0.16834714, y: 0.57674503, z: 1}
   m_Children:
@@ -325,6 +326,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114215101624590300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828f3c3288bfb1949a50becbc48372cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114238257921075590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,6 +351,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   cameraExtraSlide: 0.015
   cameraSlideSlow: 0.01
+  go: {fileID: 0}
   drunkIdle: {fileID: 1554656727300868}
   drunkMoving: {fileID: 143348}
   Attacking: {fileID: 1443531037274114}
@@ -360,6 +373,8 @@ MonoBehaviour:
   timeBetweenThinkies: 1.5
   timeBetweenThinkiesCounter: 0
   forcedMoveDirection: {x: 0, y: 0}
+  damagePerHit: 10
+  rangeToAttack: 2
   playerState: 0
 --- !u!212 &212367255748916164
 SpriteRenderer:

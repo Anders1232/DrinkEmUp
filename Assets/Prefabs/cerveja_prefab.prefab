@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212596234784886708}
   - component: {fileID: 58954566208496330}
   - component: {fileID: 114175758265930440}
+  - component: {fileID: 114877309459394660}
   m_Layer: 0
   m_Name: cerveja_prefab
   m_TagString: Untagged
@@ -73,6 +74,17 @@ MonoBehaviour:
   shakeAmplitude: 0.01
   alchoolInBeer: 20
   playerCollider: {fileID: 0}
+--- !u!114 &114877309459394660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1441892140429438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828f3c3288bfb1949a50becbc48372cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212596234784886708
 SpriteRenderer:
   m_ObjectHideFlags: 1
