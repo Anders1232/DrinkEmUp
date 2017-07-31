@@ -11,6 +11,8 @@ public class ScareCrow : MonoBehaviour {
     public float minSpeed;
     public float maxSpeed;
 
+    public GameObject objScore;
+
     public float life;
 
     public float attackAnimationTime;
@@ -52,6 +54,7 @@ public class ScareCrow : MonoBehaviour {
     void Update () {
         if (life == 0) {
             Destroy(gameObject);
+            //objScore.score += 20;
         }
         speed = (maxSpeed - minSpeed) * playerBeerBar.CurrentValue / playerBeerBar.TotalValue + minSpeed;
         timeForTheNextMove -= Time.deltaTime;
